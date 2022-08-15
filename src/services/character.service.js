@@ -1,53 +1,44 @@
-const characters = [
-  {
-    id: 1,
-    name: 'Monkey D. Luffy',
-    title: 'Captain of straw hat',
-    gender: 'male',
-  },
-  {
-    id: 2,
-    name: 'Roronoa Zoro',
-    title: 'Bounty Hunter',
-    gender: 'male',
-  },
-  {
-    id: 3,
-    name: 'Nami',
-    title: 'Thief Pirate',
-    gender: 'female',
-  },
-];
+const animes = require('../mocks/animes');
+const Anime = require("../database/models/animeSchema");
+const AnimeEntity = require('../entities/anime.entity');
 
-const findAllCharactersService = () => {
-  return characters;
+async function findAllCharactersService() {
+  return await Anime.find();
 };
 
-const findByIdCharacterService = (idParam) => {
-  return characters.find((character) => character.id === idParam);
+async function findByIdCharacterService(idParam) {
+  const animeFinded = await Anime.findOne({id: idParam});
+  return animeFinded;
+
 };
 
-const createCharacterService = (newCharacter) => {
-  const newId = characters.length + 1;
-  newCharacter.id = newId;
-  characters.push(newCharacter);
-  return newCharacter;
+async function createCharacterService(anime) {
+  const newAnime = new AnimeEntity(anime);
+  newAnime.validate();
+  newAnime.push(newAnime.getAnime());
 };
 
-const updateCharacterService = (id, characterEdited) => {
-  characterEdited['id'] = id;
-  const characterIndex = characters.findIndex(
-    (character) => character.id == id,
+async function updateCharacterService(anime) {
+  const updateAnime = new AnimeEntity(anime);
+  updateAnime.validate();
+
+  const updatedAnime = {
+    ...updateAnime.getAnime()
+  };
+
+  const animeUpdatedInDatabase = await Anime.findOneAndUpdate(
+    { id: anime.id },
+    updatedAnime,
+    { new: true }
   );
-  characters[characterIndex] = characterEdited;
-  return characterEdited;
+  
+  return animeUpdatedInDatabase;
 };
 
-const deleteCharacterService = (id) => {
-  const characterIndex = characters.findIndex(
-    (character) => character.id == id,
-  );
-  return characters.splice(characterIndex, 1);
+async function deleteCharacterService(id) {
+  const animeFinded = await Anime.findOneAndDelete({ idParam: id});
+
+  return animeFinded;
 };
 
 module.exports = {
