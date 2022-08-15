@@ -15,19 +15,19 @@ async function findByIdCharacterService(idParam) {
 async function createCharacterService(anime) {
   const newAnime = new AnimeEntity(anime);
   newAnime.validate();
-  newAnime.push(newAnime.getAnime());
+  const animeCreate = new Anime({...newAnime.getAnime()});
+  animeCreate.save()
 };
 
 async function updateCharacterService(anime) {
   const updateAnime = new AnimeEntity(anime);
-  updateAnime.validate();
 
   const updatedAnime = {
     ...updateAnime.getAnime()
   };
 
   const animeUpdatedInDatabase = await Anime.findOneAndUpdate(
-    { id: anime.id },
+    { id: anime },
     updatedAnime,
     { new: true }
   );
