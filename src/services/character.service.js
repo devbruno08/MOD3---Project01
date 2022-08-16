@@ -27,12 +27,12 @@ async function updateCharacterService(anime) {
   };
 
   const animeUpdatedInDatabase = await Anime.findOneAndUpdate(
-    { id: anime },
+    { id: anime.id },
     updatedAnime,
     { new: true }
   );
   
-  return animeUpdatedInDatabase;
+  return animeUpdatedInDatabase
 };
 
 async function deleteCharacterService(id) {

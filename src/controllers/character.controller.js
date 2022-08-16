@@ -34,7 +34,7 @@ async function createCharacterController(req, res) {
 
 async function updateCharacterController(req, res) {
   try{
-    const anime = req.params.id;
+    const anime = req.body;
     const animeUpdated = await charactersService.updateCharacterService(anime);
     res.status(200).send(animeUpdated);
   } catch (err) {
