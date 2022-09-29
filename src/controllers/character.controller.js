@@ -7,8 +7,8 @@ async function findAllCharactersController(req, res) {
   } catch (err) {
     console.log(err);
     res.status(500);
-  };
-};
+  }
+}
 
 async function findByIdCharacterController(req, res) {
   const idParam = req.params.id;
@@ -16,31 +16,32 @@ async function findByIdCharacterController(req, res) {
   if (uniqueAnime) {
     res.status(200).send(uniqueAnime);
   } else {
-    res.status(400).send({ message: "Não existe nenhum anime com esse id" });
-  };
-};
+    res.status(400).send({ message: 'Não existe nenhum anime com esse id' });
+  }
+}
 
 async function createCharacterController(req, res) {
-  try{
+  try {
     const character = req.body;
-    const animeCreated = await charactersService.createCharacterService(character);
+    const animeCreated = await charactersService.createCharacterService(
+      character,
+    );
     res.status(201).send(animeCreated);
-    } catch (err) {
+  } catch (err) {
     console.log(err.message);
     res.status(400).send({ message: err.message });
-  };
-};
-
+  }
+}
 
 async function updateCharacterController(req, res) {
-  try{
+  try {
     const anime = req.body;
     const animeUpdated = await charactersService.updateCharacterService(anime);
     res.status(200).send(animeUpdated);
   } catch (err) {
     res.status(400).send({ message: err.message });
-  };
-};
+  }
+}
 
 async function deleteCharacterController(req, res) {
   const idParam = req.params.id;
@@ -50,9 +51,9 @@ async function deleteCharacterController(req, res) {
   } else {
     res
       .status(400)
-      .send({ message: "Nenhum anime com esse id foi encontrado" });
-  };
-};
+      .send({ message: 'Nenhum anime com esse id foi encontrado' });
+  }
+}
 
 module.exports = {
   findAllCharactersController,

@@ -1,0 +1,200 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "One Piece API",
+    "version": "1.0.0",
+    "description": "A API - CRUD from One Piece"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/characters",
+      "description": "DEV"
+    },
+    {
+      "ulr": "",
+      "description": "PROD"
+    }
+  ],
+  "paths": {
+    "/all-characters": {
+      "get": {
+        "summary": "This endpoint return all characters in database",
+        "tags": ["One Piece"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#components/schemas/anime"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/character/{id}": {
+      "get": {
+        "summary": "This endpoint return a unique character finded by id",
+        "tags": ["One Piece"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id the character to be finded",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Not found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#components/schemas/anime"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create": {
+      "post": {
+        "summary": "This endpoint the character has been created",
+        "tags": ["Create"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/anime"
+              },
+              "examples": {
+                "anime": {
+                  "value": {
+                    "name": "Monkey D. Luffy",
+                    "title": "Captain of straw hat",
+                    "gender": "male"
+                  }
+                }
+              },
+              "responses": {
+                "400": {
+                  "description": "Bad request"
+                },
+                "201": {
+                  "description": "Anime Created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "$ref": "#components/schemas/anime"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update": {
+      "put": {
+        "summary": "This endpoint return the character updated",
+        "tags": ["One Piece"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/anime"
+              },
+              "examples": {
+                "anime": {
+                  "value": {
+                    "id": "99e00bc0-1dad-11ed-861d-0242ac120002",
+                    "name": "Monkey D. Luffy",
+                    "title": "Captain of straw hat",
+                    "gender": "male"
+                  }
+                }
+              },
+              "responses": {
+                "400": {
+                  "description": "Bad request"
+                },
+                "200": {
+                  "description": "Anime Updated",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "$ref": "#components/schemas/anime"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/delete/{id}": {
+        "get": {
+          "summary": "This endpoint return a deleted character finded by id",
+          "tags": ["One Piece"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Id the character to be deleted",
+              "required": "true"
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Not found"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "items": {
+                      "$ref": "#components/schemas/anime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "components": {
+      "schemas": {
+        "anime": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "title": { "type": "string" },
+            "gender": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

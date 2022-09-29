@@ -8,3 +8,5 @@ route.put('/update', controllerCharacters.updateCharacterController);
 route.delete('/delete/:id', controllerCharacters.deleteCharacterController);
 
 module.exports = route;
+
+
