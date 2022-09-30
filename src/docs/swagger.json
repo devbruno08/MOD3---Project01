@@ -72,7 +72,7 @@
     "/create": {
       "post": {
         "summary": "This endpoint the character has been created",
-        "tags": ["Create"],
+        "tags": ["One Piece"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -148,32 +148,32 @@
             }
           }
         }
-      },
-      "/delete/{id}": {
-        "get": {
-          "summary": "This endpoint return a deleted character finded by id",
-          "tags": ["One Piece"],
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "description": "Id the character to be deleted",
-              "required": "true"
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Not found"
-            },
-            "200": {
-              "description": "OK",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "items": {
-                      "$ref": "#components/schemas/anime"
-                    }
+      }
+    },
+    "/delete/{id}": {
+      "delete": {
+        "summary": "This endpoint return a deleted character finded by id",
+        "tags": ["One Piece"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id the character to be deleted",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Not found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#components/schemas/anime"
                   }
                 }
               }
@@ -181,18 +181,17 @@
           }
         }
       }
-    },
-
-    "components": {
-      "schemas": {
-        "anime": {
-          "type": "object",
-          "properties": {
-            "id": { "type": "string" },
-            "name": { "type": "string" },
-            "title": { "type": "string" },
-            "gender": { "type": "string" }
-          }
+    }
+  },
+  "components": {
+    "schemas": {
+      "anime": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "title": { "type": "string" },
+          "gender": { "type": "string" }
         }
       }
     }
