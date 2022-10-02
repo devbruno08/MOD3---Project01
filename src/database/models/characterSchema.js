@@ -7,6 +7,6 @@ const characterSchema = new Schema({
   gender: { type: String, required: true },
 });
 
-const character = model('character', characterSchema);
+const character = model('characters', characterSchema);
 
 module.exports = character;
