@@ -11,7 +11,7 @@
       "description": "DEV"
     },
     {
-      "ulr": "",
+      "ulr": "https://piece-api.herokuapp.com/characters",
       "description": "PROD"
     }
   ],

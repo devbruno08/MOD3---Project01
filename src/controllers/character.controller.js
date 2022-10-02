@@ -2,8 +2,8 @@ const charactersService = require('../services/character.service');
 
 async function findAllCharactersController(req, res) {
   try {
-    const allAnimes = await charactersService.findAllCharactersService();
-    res.status(200).send(allAnimes);
+    const allCharacters = await charactersService.findAllCharactersService();
+    res.status(200).send(allCharacters);
   } catch (err) {
     console.log(err);
     res.status(500);
@@ -12,21 +12,21 @@ async function findAllCharactersController(req, res) {
 
 async function findByIdCharacterController(req, res) {
   const idParam = req.params.id;
-  const uniqueAnime = await charactersService.findByIdCharacterService(idParam);
-  if (uniqueAnime) {
-    res.status(200).send(uniqueAnime);
+  const oneCharacter = await charactersService.findByIdCharacterService(idParam);
+  if (oneCharacter) {
+    res.status(200).send(oneCharacter);
   } else {
-    res.status(400).send({ message: 'Não existe nenhum anime com esse id' });
+    res.status(400).send({ message: 'Não existe nenhum character com esse id' });
   }
 }
 
 async function createCharacterController(req, res) {
   try {
     const character = req.body;
-    const animeCreated = await charactersService.createCharacterService(
+    const characterCreated = await charactersService.createCharacterService(
       character,
     );
-    res.status(201).send(animeCreated);
+    res.status(201).send(characterCreated);
   } catch (err) {
     console.log(err.message);
     res.status(400).send({ message: err.message });
@@ -35,9 +35,9 @@ async function createCharacterController(req, res) {
 
 async function updateCharacterController(req, res) {
   try {
-    const anime = req.body;
-    const animeUpdated = await charactersService.updateCharacterService(anime);
-    res.status(200).send(animeUpdated);
+    const character = req.body;
+    const characterUpdated = await charactersService.updateCharacterService(character);
+    res.status(200).send(characterUpdated);
   } catch (err) {
     res.status(400).send({ message: err.message });
   }
@@ -45,13 +45,13 @@ async function updateCharacterController(req, res) {
 
 async function deleteCharacterController(req, res) {
   const idParam = req.params.id;
-  const deletedAnime = await charactersService.deleteCharacterService(idParam);
-  if (deletedAnime) {
-    res.status(200).send(deletedAnime);
+  const deletedCharacter = await charactersService.deleteCharacterService(idParam);
+  if (deletedCharacter) {
+    res.status(200).send(deletedCharacter);
   } else {
     res
       .status(400)
-      .send({ message: 'Nenhum anime com esse id foi encontrado' });
+      .send({ message: 'Nenhum character com esse id foi encontrado' });
   }
 }
 

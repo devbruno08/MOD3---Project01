@@ -1,43 +1,42 @@
-const animes = require('../mocks/animes');
-const Anime = require('../database/models/animeSchema');
-const AnimeEntity = require('../entities/anime.entity');
+const Character = require('../database/models/characterSchema');
+const CharacterEntity = require('../entities/character.entity');
 
 async function findAllCharactersService() {
-  return await Anime.find();
+  return await Character.find();
 }
 
 async function findByIdCharacterService(idParam) {
-  const animeFinded = await Anime.findOne({ id: idParam });
-  return animeFinded;
+  const CharacterFinded = await Character.findOne({ id: idParam });
+  return CharacterFinded;
 }
 
-async function createCharacterService(anime) {
-  const newAnime = new AnimeEntity(anime);
-  newAnime.validate();
-  const animeCreate = new Anime({ ...newAnime.getAnime() });
-  animeCreate.save();
+async function createCharacterService(character) {
+  const newCharacter = new CharacterEntity(character);
+  newCharacter.validate();
+  const characterCreate = new Character({ ...newCharacter.getCharacter() });
+  characterCreate.save();
 }
 
-async function updateCharacterService(anime) {
-  const updateAnime = new AnimeEntity(anime);
+async function updateCharacterService(character) {
+  const updateCharacter = new CharacterEntity(character);
 
-  const updatedAnime = {
-    ...updateAnime.getAnime(),
+  const updatedCharacter = {
+    ...updateCharacter.getCharacter(),
   };
 
-  const animeUpdatedInDatabase = await Anime.findOneAndUpdate(
-    { id: anime.id },
-    updatedAnime,
+  const characterUpdatedInDatabe = await Character.findOneAndUpdate(
+    { id: character.id },
+    updatedCharacter,
     { new: true },
   );
 
-  return animeUpdatedInDatabase;
+  return characterUpdatedInDatabe;
 }
 
 async function deleteCharacterService(idParam) {
-  const animeFinded = await Anime.findOneAndDelete({ id: idParam });
+  const CharacterFinded = await Character.findOneAndDelete({ id: idParam });
 
-  return animeFinded;
+  return CharacterFinded;
 }
 
 module.exports = {

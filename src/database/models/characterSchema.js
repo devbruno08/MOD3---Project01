@@ -1,12 +1,12 @@
 const { Schema, model } = require('mongoose');
 
-const animeSchema = new Schema({
+const characterSchema = new Schema({
   id: { type: String, required: true },
   name: { type: String, required: true },
   title: { type: String, required: true },
   gender: { type: String, required: true },
 });
 
-const Anime = model('Anime', animeSchema);
+const character = model('character', characterSchema);
 
-module.exports = Anime;
+module.exports = character;

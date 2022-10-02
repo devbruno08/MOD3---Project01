@@ -1,11 +1,11 @@
 const crypto = require('node:crypto');
 
-class AnimeEntity {
-  constructor(anime) {
-    this.id = anime.id ?? crypto.randomUUID();
-    this.name = anime.name;
-    this.title = anime.title;
-    this.gender = anime.gender;
+class CharacterEntity {
+  constructor(character) {
+    this.id = character.id ?? crypto.randomUUID();
+    this.name = character.name;
+    this.title = character.title;
+    this.gender = character.gender;
   }
   validate() {
     if (!this.name) {
@@ -18,7 +18,7 @@ class AnimeEntity {
       throw new Error('Genero precisa ser informado!');
     }
   }
-  getAnime() {
+  getCharacter() {
     return {
       id: this.id,
       name: this.name,
@@ -28,4 +28,4 @@ class AnimeEntity {
   }
 }
 
-module.exports = AnimeEntity;
+module.exports = CharacterEntity;
