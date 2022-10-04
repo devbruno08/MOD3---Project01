@@ -125,7 +125,8 @@
                     "id": "99e00bc0-1dad-11ed-861d-0242ac120002",
                     "name": "Monkey D. Luffy",
                     "title": "Captain of straw hat",
-                    "gender": "male"
+                    "gender": "Male",
+                    "imageURL": "https://nerdhits.com.br/wp-content/uploads/2021/08/luffy-cosplay-1200x720.jpg"
                   }
                 }
               },
@@ -191,7 +192,8 @@
           "id": { "type": "string" },
           "name": { "type": "string" },
           "title": { "type": "string" },
-          "gender": { "type": "string" }
+          "gender": { "type": "string" },
+          "imageURL": { "type": "string"}
         }
       }
     }
