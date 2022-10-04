@@ -19,7 +19,6 @@ async function createCharacterService(character) {
 
 async function updateCharacterService(character) {
   const updateCharacter = new CharacterEntity(character);
-
   const updatedCharacter = {
     ...updateCharacter.getCharacter(),
   };

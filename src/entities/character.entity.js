@@ -6,6 +6,7 @@ class CharacterEntity {
     this.name = character.name;
     this.title = character.title;
     this.gender = character.gender;
+    this.imageURL = character.imageURL;
   }
   validate() {
     if (!this.name) {
@@ -24,6 +25,7 @@ class CharacterEntity {
       name: this.name,
       title: this.title,
       gender: this.gender,
+      imageURL: this.imageURL,
     };
   }
 }
